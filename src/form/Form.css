@@ -1,0 +1,41 @@
+.container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .input {
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #45a049;
+  }
+  
+  .list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .list-item {
+    padding: 10px;
+    background-color: #dadada;
+    margin: 5px auto;
+    border-radius: 5px;
+    width: 300px;
+    
+  }
+  

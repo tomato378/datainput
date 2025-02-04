@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
-import NameInput from "./components/NameInput";
-import NameList from "./components/NameList";
+import NameInput from "../components/NameInput";
+import NameList from "../components/NameList";
+import './Form.css';
 
 // 環境変数を使った Firebase 設定
 const firebaseConfig = {
