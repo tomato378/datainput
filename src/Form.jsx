@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import NameInput from "./components/NameInput";
+import NameList from "./components/NameList";
 
 // 環境変数を使った Firebase 設定
 const firebaseConfig = {
@@ -10,7 +12,7 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 // Firebase 初期化
@@ -50,18 +52,8 @@ function App() {
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
       <h2>名前リスト</h2>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="名前を入力"
-      />
-      <button onClick={handleAddName}>追加</button>
-      <ul>
-        {names.map((n, index) => (
-          <li key={index}>{n}</li>
-        ))}
-      </ul>
+      <NameInput name={name} setName={setName} handleAddName={handleAddName} />
+      <NameList names={names} />
     </div>
   );
 }
