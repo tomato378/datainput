@@ -1,34 +1,39 @@
 import React from "react";
+import "./NameInput.css"; // CSSファイルを作成
 
-function NameInput({ name, setName, handleAddName }) {
-  const inputStyle = {
-    padding: "10px",
-    fontSize: "16px",
-    margin: "10px 0",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
-  };
-
-  const buttonStyle = {
-    padding: "10px 20px",
-    fontSize: "16px",
-    backgroundColor: "#4CAF50",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
+function NameInput({ name, setName, email, setEmail, handleAddName }) {
+  // Enterキーで追加
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && name.trim() !== "" && email.trim() !== "") {
+      handleAddName();
+    }
   };
 
   return (
-    <div>
+    <div className="input-container">
       <input
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        onKeyPress={handleKeyPress} // Enterキー対応
         placeholder="名前を入力"
-        style={inputStyle}
+        className="input-field"
+        required
       />
-      <button onClick={handleAddName} style={buttonStyle}>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        onKeyPress={handleKeyPress} // Enterキー対応
+        placeholder="メールアドレスを入力"
+        className="input-field"
+        required
+      />
+      <button 
+        onClick={handleAddName} 
+        className="add-button"
+        disabled={name.trim() === "" || email.trim() === ""} // 空のときは無効化
+      >
         追加
       </button>
     </div>

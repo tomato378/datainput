@@ -32,10 +32,25 @@
   
   .list-item {
     padding: 10px;
-    background-color: #dadada;
+    background-color: #d4d2d2;
     margin: 5px auto;
     border-radius: 5px;
     width: 300px;
-    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .delete-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .delete-button:hover {
+    background-color: darkred;
   }
   
