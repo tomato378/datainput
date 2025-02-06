@@ -30,7 +30,10 @@ const db = getFirestore(app);
 
 function App() {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");  // 修正
+  const [email, setEmail] = useState("");
+  const [grade, setGrade] = useState("");
+  const [class_name, setClass] = useState("");
+  const [number, setNumber] = useState("");
   const [names, setNames] = useState([]);
 
   // Firestore からデータをリアルタイム取得
@@ -40,6 +43,9 @@ function App() {
         id: doc.id,
         name: doc.data().name,
         email: doc.data().email,
+        grade: doc.data().grade,
+        class_name: doc.data().class_name,
+        number: doc.data().number,
         timestamp: doc.data().timestamp,
       }));
       setNames(nameList);
@@ -51,15 +57,23 @@ function App() {
 
   // Firestore に名前を追加
   const handleAddName = async () => {
-    if (name.trim() === "" || email.trim() === "") return;
+    if (name.trim() === "" || email.trim() === "" || 
+        grade.trim() === "" || class_name.trim() === "" || 
+        number.trim() === "") return;
     try {
       const docRef = await addDoc(collection(db, "names"), {
         name,
         email,
-        timestamp: serverTimestamp(),  // Firestore のサーバータイムを使用
+        grade,
+        class_name,
+        number,
+        timestamp: serverTimestamp(),
       });
       setName("");
-      setEmail("");  // 修正
+      setEmail("");
+      setGrade("");
+      setClass("");
+      setNumber("");
     } catch (error) {
       console.error("データ追加エラー:", error);
     }
@@ -81,7 +95,13 @@ function App() {
         name={name}
         setName={setName}
         email={email}
-        setEmail={setEmail}  // 修正
+        setEmail={setEmail}
+        grade={grade}
+        setGrade={setGrade}
+        class_name={class_name}
+        setClass={setClass}
+        number={number}
+        setNumber={setNumber}
         handleAddName={handleAddName} 
       />
       <NameList names={names} deleteName={deleteName} />
